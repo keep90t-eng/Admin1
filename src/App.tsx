@@ -19,7 +19,8 @@ import {
 import { subscribeToCloudOtpSessions } from './utils/otpManager';
 import { playGatewayEnteredAlertSound } from './utils/audioAlert';
 import { Order, FruitProduct, Coupon, AdminDriver, StoreSettings } from './types';
-import { FRUIT_PRODUCTS, DEFAULT_COUPONS, INITIAL_DRIVERS, DEFAULT_SETTINGS } from './data/products';
+import { FRUIT_PRODUCTS } from './data/products';
+import { INITIAL_COUPONS, INITIAL_DRIVERS, INITIAL_STORE_SETTINGS } from './data/adminData';
 
 export const App: React.FC = () => {
   const [orders, setOrders] = useState<Order[]>(() => {
@@ -43,9 +44,9 @@ export const App: React.FC = () => {
   const [coupons, setCoupons] = useState<Coupon[]>(() => {
     try {
       const saved = localStorage.getItem('thenayan_coupons');
-      return saved ? JSON.parse(saved) : DEFAULT_COUPONS;
+      return saved ? JSON.parse(saved) : INITIAL_COUPONS;
     } catch {
-      return DEFAULT_COUPONS;
+      return INITIAL_COUPONS;
     }
   });
 
@@ -61,9 +62,9 @@ export const App: React.FC = () => {
   const [settings, setStoreSettings] = useState<StoreSettings>(() => {
     try {
       const saved = localStorage.getItem('thenayan_settings');
-      return saved ? JSON.parse(saved) : DEFAULT_SETTINGS;
+      return saved ? JSON.parse(saved) : INITIAL_STORE_SETTINGS;
     } catch {
-      return DEFAULT_SETTINGS;
+      return INITIAL_STORE_SETTINGS;
     }
   });
 
